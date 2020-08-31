@@ -6,8 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function search(){
+		var keyword = document.getElementById("keyword").value;
+		location.href="boardsearch?keyword="+keyword;
+	}
+</script>
 </head>
 <body>
+	<input type="text" id="keyword" placeholder="검색어 입력">
+	<button onclick="search()">검색</button>
 <table border="1">
 	<tr>
 		<th>글번호</th> <th>글쓴이</th> <th>제목</th>

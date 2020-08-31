@@ -12,6 +12,9 @@
 	function update(){
 	location.href="boardupdate?bnumber="+${boardView.bnumber};
 	}
+	function boarddelete(){
+	location.href="boarddelete?bnumber="+${boardView.bnumber};
+	}
 </script>
 </head>
 <body>
@@ -22,7 +25,10 @@
 		작성일자 : ${boardView.bdate}<br>
 		조회수 : ${boardView.bhits}<br>
 		<br>
+		<button onclick = "insert()">글쓰기</button>
 		<button onclick = "move()">목록보기</button>
 		<button onclick = "update()">수정</button>
+		<button onclick = "boarddelete()">삭제하기</button>
+		
 </body>
 </html>

@@ -164,4 +164,48 @@ public class BoardDAO {
 		return processResult;
 	}
 
+	public int boardDelete(int bnumber) {
+		String sql = "DELETE FROM BOARD1 WHERE BNUMBER=?";
+		int deleteResult = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bnumber);
+			deleteResult = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+		}
+		
+		return deleteResult;
+	}
+
+	public List<BoardDTO> boardSearch(String keyword) {
+		String sql = "SELECT * FROM BOARD1 WHERE BTITLE LIKE ?";
+		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		BoardDTO board = null;
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, '%'+keyword+'%');
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				board = new BoardDTO();
+				board.setBnumber(rs.getInt("BNUMBER"));
+				board.setBwriter(rs.getString("BWRITER"));
+				board.setBtitle(rs.getString("BTITLE"));
+				board.setBcontents(rs.getString("BCONTENTS"));
+				board.setBdate(rs.getDate("BDATE"));
+				board.setBhits(rs.getInt("BHITS"));
+				boardList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+			rsClose();
+		}
+		return boardList;
+	}
+	
+
 }
