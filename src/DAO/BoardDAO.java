@@ -74,6 +74,7 @@ public class BoardDAO {
 				board.setBcontents(rs.getString("BCONTENTS"));
 				board.setBdate(rs.getDate("BDATE"));
 				board.setBhits(rs.getInt("BHITS"));
+				board.setBfilename(rs.getString("BFILENAME"));
 				boardList.add(board);
 			}
 		} catch (SQLException e) {
@@ -100,6 +101,7 @@ public class BoardDAO {
 				boardView.setBcontents(rs.getString("BCONTENTS"));
 				boardView.setBdate(rs.getDate("BDATE"));
 				boardView.setBhits(rs.getInt("BHITS"));
+				boardView.setBfilename(rs.getString("BFILENAME"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -205,6 +207,71 @@ public class BoardDAO {
 			rsClose();
 		}
 		return boardList;
+	}
+
+	public int boardWriteFile(BoardDTO board) {
+		String sql = "INSERT INTO BOARD1(BNUMBER,BWRITER,BTITLE,BCONTENTS,BDATE,BHITS,BFILENAME)"
+				+"VALUES(SEQ_BOARD.NEXTVAL,?,?,?,SYSDATE,0,?)";
+		int writeResult = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBwriter());
+			pstmt.setString(2, board.getBtitle());
+			pstmt.setString(3, board.getBcontents());
+			pstmt.setString(4, board.getBfilename());
+			writeResult = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+		}
+		return writeResult;
+	}
+
+	public List<BoardDTO> boardListPaging(int startRow, int endRow) {
+		String sql = "SELECT * FROM BOARDLIST WHERE RN BETWEEN ? AND ?";
+		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		BoardDTO board = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				board = new BoardDTO();
+				board.setBnumber(rs.getInt("BNUMBER"));
+				board.setBwriter(rs.getString("BWRITER"));
+				board.setBtitle(rs.getString("BTITLE"));
+				board.setBcontents(rs.getString("BCONTENTS"));
+				board.setBdate(rs.getDate("BDATE"));
+				board.setBhits(rs.getInt("BHITS"));
+				boardList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+			rsClose();
+		}
+		return boardList;
+	}
+
+	public int listCount() {
+		String sql = "SELECT COUNT(BNUMBER) FROM BOARDLIST";
+		int listCount = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+			rsClose();
+		}
+		return listCount;
 	}
 	
 

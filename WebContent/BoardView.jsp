@@ -24,7 +24,7 @@
 		내용 : ${boardView.bcontents}<br>
 		작성일자 : ${boardView.bdate}<br>
 		조회수 : ${boardView.bhits}<br>
-		<br>
+		파일이미지  : <img src="UploadFile/${boardView.bfilename}" width="200" hight="200"><br> 
 		<button onclick = "insert()">글쓰기</button>
 		<button onclick = "move()">목록보기</button>
 		<button onclick = "update()">수정</button>

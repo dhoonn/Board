@@ -13,5 +13,8 @@
 <h2>BoardMain.jsp</h2>
 <button onclick = "location.href='boardlist'">글 목록</button>
 <button onclick = "location.href='BoardWrite.jsp'">글쓰기</button>
+
+<button onclick="location.href='boardlistpaging'">목록(페이징)</button>
+
 </body>
 </html>

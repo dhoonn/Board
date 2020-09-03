@@ -1,10 +1,8 @@
-package DB;
+package db;
 
-import java.sql.Connection;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import java.sql.*;
+import javax.naming.*;
+import javax.sql.*;
 
 public class DBConnection {
 	public static Connection getConnection() {
@@ -15,11 +13,10 @@ public class DBConnection {
 			DataSource ds = (DataSource) envCtx.lookup("jdbc/OracleDB");
 			con = ds.getConnection();
 			con.setAutoCommit(true);
-			System.out.println("DBCP ì—°ê²°");
+			System.out.println("DBCP ¿¬°á");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return con;
 	}
-
 }

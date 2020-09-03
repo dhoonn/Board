@@ -13,6 +13,9 @@ public class BoardDTO {
 	public BoardDTO(){
 		
 	}
+	
+	//파일이름 저장을 위한 필드 추가 
+	private String bfilename;
 
 	public int getBnumber() {
 		return bnumber;
@@ -62,7 +65,16 @@ public class BoardDTO {
 		this.bhits = bhits;
 	}
 
-	public BoardDTO(int bnumber, String bwriter, String btitle, String bcontents, Date bdate, int bhits) {
+	public String getBfilename() {
+		return bfilename;
+	}
+
+	public void setBfilename(String bfilename) {
+		this.bfilename = bfilename;
+	}
+
+	public BoardDTO(int bnumber, String bwriter, String btitle, String bcontents, Date bdate, int bhits,
+			String bfilename) {
 		super();
 		this.bnumber = bnumber;
 		this.bwriter = bwriter;
@@ -70,13 +82,14 @@ public class BoardDTO {
 		this.bcontents = bcontents;
 		this.bdate = bdate;
 		this.bhits = bhits;
+		this.bfilename = bfilename;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardDTO [bnumber=" + bnumber + ", bwriter=" + bwriter + ", btitle=" + btitle + ", bcontents="
-				+ bcontents + ", bdate=" + bdate + ", bhits=" + bhits + "]";
+				+ bcontents + ", bdate=" + bdate + ", bhits=" + bhits + ", bfilename=" + bfilename + "]";
 	}
 	
-	
 }
+	

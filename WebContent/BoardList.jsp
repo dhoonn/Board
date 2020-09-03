@@ -20,6 +20,7 @@
 	<tr>
 		<th>글번호</th> <th>글쓴이</th> <th>제목</th>
 		<th>내용</th> <th>작성일자</th> <th>조회수</th>
+		<th>첨부파일</th>
 		<c:forEach var="board" items="${boardList}">
 			<tr>
 			<td>${board.bnumber}</td>
@@ -29,8 +30,11 @@
 			<td>${board.bcontents}</td>
 			<td>${board.bdate}</td>
 			<td>${board.bhits}</td>
+			<td>${board.bfilename}</td>
 			</tr><br>
 		</c:forEach>
 	</table>
+	<button onclick="location.href='BoardWrite.jsp'" >글쓰기</button>
+	<button onclick="location.href='BoardWriteFile.jsp'" >글쓰기(파일)</button>
 </body>
 </html>
