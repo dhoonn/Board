@@ -15,6 +15,8 @@
 	<form action="boardwrite" method="post">
 		작성자<br>
 		<input type="text" name="bwriter" id="bwriter"><br>
+		비밀번호<br>
+		<input type="text" name="bpassword" id="bpassword"><br>
 		제목<br>
 		<input type="text" name="btitle" id="btitle"><br>
 		내용<br>

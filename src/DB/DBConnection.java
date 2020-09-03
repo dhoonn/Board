@@ -1,4 +1,4 @@
-package db;
+package DB;
 
 import java.sql.*;
 import javax.naming.*;

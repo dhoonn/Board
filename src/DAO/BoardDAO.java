@@ -42,14 +42,15 @@ public class BoardDAO {
 	}
 
 	public int boardWrite(BoardDTO board) {
-		String sql = "INSERT INTO BOARD1(BNUMBER,BWRITER,BTITLE,BCONTENTS,BDATE,BHITS)"
-					+"VALUES(SEQ_BOARD.NEXTVAL,?,?,?,SYSDATE,0)";
+		String sql = "INSERT INTO BOARD1(BNUMBER,BWRITER,BTITLE,BCONTENTS,BDATE,BHITS,BPASSWORD)"
+					+"VALUES(SEQ_BOARD.NEXTVAL,?,?,?,SYSDATE,0,?)";
 		int writeResult = 0;
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, board.getBwriter());
 			pstmt.setString(2, board.getBtitle());
 			pstmt.setString(3, board.getBcontents());
+			pstmt.setString(4, board.getBpassword());
 			writeResult = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -138,6 +139,7 @@ public class BoardDAO {
 				boardUpdate.setBcontents(rs.getString("BCONTENTS"));
 				boardUpdate.setBdate(rs.getDate("BDATE"));
 				boardUpdate.setBhits(rs.getInt("BHITS"));
+				boardUpdate.setBpassword(rs.getString("BPASSWORD"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -273,6 +275,35 @@ public class BoardDAO {
 		}
 		return listCount;
 	}
+
+	public List<BoardDTO> boardSort() {
+		String sql = "SELECT * FROM BOARD1 ORDER BY BHITS DESC";
+		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		BoardDTO board = null;
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				board = new BoardDTO();
+				board.setBnumber(rs.getInt("BNUMBER"));
+				board.setBwriter(rs.getString("BWRITER"));
+				board.setBtitle(rs.getString("BTITLE"));
+				board.setBcontents(rs.getString("BCONTENTS"));
+				board.setBdate(rs.getDate("BDATE"));
+				board.setBhits(rs.getInt("BHITS"));
+				board.setBfilename(rs.getString("BFILENAME"));
+				boardList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pstmtClose();
+			rsClose();
+		}
+		return boardList;
+	}
+	
+
 	
 
 }

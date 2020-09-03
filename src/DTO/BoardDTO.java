@@ -9,6 +9,7 @@ public class BoardDTO {
 	private String bcontents;
 	private Date bdate;
 	private int bhits;
+	private String bpassword;
 	
 	public BoardDTO(){
 		
@@ -72,9 +73,18 @@ public class BoardDTO {
 	public void setBfilename(String bfilename) {
 		this.bfilename = bfilename;
 	}
+	
+
+	public String getBpassword() {
+		return bpassword;
+	}
+
+	public void setBpassword(String bpassword) {
+		this.bpassword = bpassword;
+	}
 
 	public BoardDTO(int bnumber, String bwriter, String btitle, String bcontents, Date bdate, int bhits,
-			String bfilename) {
+			String bfilename, String bpassword ) {
 		super();
 		this.bnumber = bnumber;
 		this.bwriter = bwriter;
@@ -83,12 +93,14 @@ public class BoardDTO {
 		this.bdate = bdate;
 		this.bhits = bhits;
 		this.bfilename = bfilename;
+		this.bpassword = bpassword;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardDTO [bnumber=" + bnumber + ", bwriter=" + bwriter + ", btitle=" + btitle + ", bcontents="
-				+ bcontents + ", bdate=" + bdate + ", bhits=" + bhits + ", bfilename=" + bfilename + "]";
+				+ bcontents + ", bdate=" + bdate + ", bhits=" + bhits + ", bpassword=" + bpassword + ", bfilename="
+				+ bfilename + "]";
 	}
 	
 }

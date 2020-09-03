@@ -11,9 +11,13 @@
 		var keyword = document.getElementById("keyword").value;
 		location.href="boardsearch?keyword="+keyword;
 	}
+	function sort(){
+		location.href="boardsort";
+	}
 </script>
 </head>
 <body>
+<h2>BoardList.jsp</h2>
 	<input type="text" id="keyword" placeholder="검색어 입력">
 	<button onclick="search()">검색</button>
 <table border="1">
@@ -36,5 +40,6 @@
 	</table>
 	<button onclick="location.href='BoardWrite.jsp'" >글쓰기</button>
 	<button onclick="location.href='BoardWriteFile.jsp'" >글쓰기(파일)</button>
+	<button onclick="sort()" >조회수 정렬</button>
 </body>
 </html>

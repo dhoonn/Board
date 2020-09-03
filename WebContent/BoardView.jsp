@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+	function insert(){
+	location.href="BoardWrite.jsp";
+	}
 	function move(){
 	location.href="boardlist";
 	}
@@ -18,6 +21,7 @@
 </script>
 </head>
 <body>
+<h2>BoardView.jsp</h2>
 		글번호 : ${boardView.bnumber}<br>
 		글쓴이 : ${boardView.bwriter}<br>
 		제목 : ${boardView.btitle}<br>

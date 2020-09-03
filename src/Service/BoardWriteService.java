@@ -12,11 +12,13 @@ public class BoardWriteService {
 		String bwriter = request.getParameter("bwriter");
 		String btitle = request.getParameter("btitle");
 		String bcontents = request.getParameter("bcontents");
+		String bpassword = request.getParameter("bpassword");
 		
 		BoardDTO board = new BoardDTO();
 		board.setBwriter(bwriter);
 		board.setBtitle(btitle);
 		board.setBcontents(bcontents);
+		board.setBpassword(bpassword);
 		
 		BoardDAO bDAO = new BoardDAO();
 		bDAO.dbConnection();
